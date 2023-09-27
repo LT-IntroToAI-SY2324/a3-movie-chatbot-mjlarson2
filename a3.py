@@ -77,7 +77,14 @@ def title_by_year_range(matches: List[str]) -> List[str]:
         a list of movie titles made during those years, inclusive (meaning if you pass
         in ["1991", "1994"] you will get movies made in 1991, 1992, 1993 & 1994)
     """
-    pass
+    output: List[str]
+    startYear = int(matches[0])
+    endYear = int(matches[1])
+    for movie in movie_db:
+        if(startYear <= movie[2] <= endYear):
+            output.append()
+    return output
+    
 
 
 def title_before_year(matches: List[str]) -> List[str]:
@@ -92,8 +99,9 @@ def title_before_year(matches: List[str]) -> List[str]:
         pass in 1992 you won't get any movies made that year, only before)
     """
     output: List[str]
-    for movies in movie_db:
-        if(matches[0] > movies[2]):
+    year = int(matches[0])
+    for movie in movie_db:
+        if(year > movie[2]):
             output.append()
     return output
 
