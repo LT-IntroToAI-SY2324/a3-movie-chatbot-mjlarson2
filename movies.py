@@ -434,5 +434,17 @@ movie_db: List[Tuple[str, str, int, List[str]]] = [
             "delroy lindo",
             "spike lee",
         ],
+    ),
+    (
+        "after hours",
+        "martin scorsese",
+        1985,
+        [
+            "griffin dunne",
+            "verna bloom",
+            "linda fiorentino",
+            "john heard",
+            "rosanna arquette",
+        ],
     )
 ]

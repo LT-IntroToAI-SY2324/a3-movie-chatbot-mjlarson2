@@ -210,6 +210,27 @@ def title_by_actor(matches: List[str]) -> List[str]:
                 output.append(movie[0])
     return output
 
+def title_by_director_and_year(matches: List[str]) -> List[str]:
+    """Finds titles of all movies that the given director directed in the given year
+    
+    Args:
+        matches - a list of 1 string and 1 int, the director and year
+
+    Returns:
+        a list of movie titles that were directed by the given director in the given year
+    
+    """
+
+    output: List[str] = []
+    director = matches[0]
+    year = int(matches[1])
+    for movie in movie_db:
+        if(director == movie[1] and year == movie[2]):
+            output.append(movie[0])
+    return output
+
+    
+
 
 # dummy argument is ignored and doesn't matter
 def bye_action(dummy: List[str]) -> None:
@@ -231,6 +252,7 @@ pa_list: List[Tuple[List[str], Callable[[List[str]], List[Any]]]] = [
     (str.split("who acted in %"), actors_by_title),
     (str.split("when was % made"), year_by_title),
     (str.split("in what movies did % appear"), title_by_actor),
+    (str.split("what movies were directed by % in _"), title_by_director_and_year),
     (["bye"], bye_action),
 ]
 
@@ -295,6 +317,7 @@ if __name__ == "__main__":
     assert isinstance(actors_by_title(["jaws"]), list), "actors_by_title not returning a list"
     assert isinstance(year_by_title(["jaws"]), list), "year_by_title not returning a list"
     assert isinstance(title_by_actor(["orson welles"]), list), "title_by_actor not returning a list"
+    assert isinstance(title_by_director_and_year(["martin scorsese", "1985"]), list), "title_by_director_and_year not returning a list"
     
     assert sorted(title_by_year(["1974"])) == sorted(
         ["amarcord", "chinatown"]
@@ -339,5 +362,6 @@ if __name__ == "__main__":
     assert sorted(
         search_pa_list(["what", "movies", "were", "made", "in", "2020"])
     ) == sorted(["No answers"]), "failed search_pa_list test 3"
+    assert sorted(title_by_director_and_year(["martin scorsese", "1985"])) == sorted(["after hours"]), "failed title_by_director_and_year test"
 
     print("All tests passed!")
